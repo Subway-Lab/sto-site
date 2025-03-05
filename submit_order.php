@@ -6,12 +6,11 @@ ini_set('display_errors', 1);
 // Подключение к базе данных через JAWSDB_URL
 $db_url = parse_url(getenv("JAWSDB_URL"));
 
-// Извлекаем данные из строки подключения
-$servername = $db_url['host']; // Хост базы данных
-$username = $db_url['user'];   // Имя пользователя
-$password = $db_url['pass'];   // Пароль
-$dbname = ltrim($db_url['path'], '/'); // Имя базы данных (убираем первый символ '/')
-$port = $db_url['port'] ?? 3306; // Порт (по умолчанию 3306 для MySQL)
+// Подключаемся к базе данных
+$servername = "g8r9w9tmspbwmsyo.cbetxkdyhwsb.us-east-1.rds.amazonaws.com"; // Хост базы данных на Heroku
+$username   = "q1i28z5zzuyro11l"; // Имя пользователя базы данных
+$password   = "kwdvun8ff1f8m6fs"; // Пароль к базе данных
+$dbname     = "vtjb3fkssehwjx62"; // Имя базы данных
 
 // Создаем подключение к базе данных
 $conn = new mysqli($servername, $username, $password, $dbname, $port);
