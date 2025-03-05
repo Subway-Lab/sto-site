@@ -1,7 +1,7 @@
 {
     "name": "subway-lab/sto-site",
     "description": "PHP web application",
-    "require": {
+    "require-dev": {
         "php": ">=7.3",
         "heroku/heroku-buildpack-php": "^263.0"
     }
