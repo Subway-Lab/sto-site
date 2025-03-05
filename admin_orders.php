@@ -6,12 +6,14 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 // Подключаемся к базе данных
-$servername = "localhost";
-$username   = "root";
-$password   = "";
-$dbname     = "sto_orders";
+$servername = "g8r9w9tmspbwmsyo.cbetxkdyhwsb.us-east-1.rds.amazonaws.com"; // Хост базы данных на Heroku
+$username   = "q1i28z5zzuyro11l"; // Имя пользователя базы данных
+$password   = "kwdvun8ff1f8m6fs"; // Пароль к базе данных
+$dbname     = "vtjb3fkssehwjx62"; // Имя базы данных
 
 $conn = new mysqli($servername, $username, $password, $dbname);
+
+// Проверяем подключение к базе данных
 if ($conn->connect_error) {
     die("Ошибка подключения: " . $conn->connect_error);
 }
@@ -24,8 +26,8 @@ $searchTypes = "";
 
 if (isset($_GET['search']) && !empty(trim($_GET['search']))) {
     $search = trim($_GET['search']);
-    // Ищем по полям: car_model, name, surname, patronymic и phone
-    $searchQuery = " WHERE car_model LIKE ? OR car_number LIKE? OR name LIKE ? OR surname LIKE ? OR patronymic LIKE ? OR phone LIKE ?";
+    // Ищем по полям: car_model, car_number, name, surname, patronymic и phone
+    $searchQuery = " WHERE car_model LIKE ? OR car_number LIKE ? OR name LIKE ? OR surname LIKE ? OR patronymic LIKE ? OR phone LIKE ?";
     $likeSearch = "%" . $search . "%";
     $searchParams = [$likeSearch, $likeSearch, $likeSearch, $likeSearch, $likeSearch];
     $searchTypes = "sssss";
