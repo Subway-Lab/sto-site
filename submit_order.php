@@ -10,7 +10,6 @@ $password   = "kwdvun8ff1f8m6fs"; // Пароль к базе данных
 $dbname     = "vtjb3fkssehwjx62"; // Имя базы данных
 
 $conn = new mysqli($servername, $username, $password, $dbname);
-
 if ($conn->connect_error) {
     die("Ошибка подключения: " . $conn->connect_error);
 }
@@ -91,7 +90,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $stmt_services->close();
         }
     }
-    
     
     // Перенаправляем на страницу подтверждения с ID заказа
     header("Location: order_confirmation.php?id=" . $order_id);
