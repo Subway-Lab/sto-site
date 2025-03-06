@@ -12,7 +12,7 @@ $password   = "kwdvun8ff1f8m6fs"; // Пароль к базе данных
 $dbname     = "vtjb3fkssehwjx62"; // Имя базы данных
 
 // Подключаемся к базе данных
-$conn = new mysqli($servername, $usernameDB, $passwordDB, $dbname);
+$conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Ошибка подключения: " . $conn->connect_error);
 }
