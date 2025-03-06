@@ -91,6 +91,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
     
+    
     // Перенаправляем на страницу подтверждения с ID заказа
     header("Location: order_confirmation.php?id=" . $order_id);
     exit;
