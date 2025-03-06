@@ -3,35 +3,33 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-// Подключение к базе данных через JAWSDB_URL
-$db_url = parse_url(getenv("JAWSDB_URL"));
+// Подключение к базе данных через JAWS DB
+$jaasdb_url = getenv('JAWSDB_URL'); // Получаем строку подключения из переменных окружения
+$parsed_url = parse_url($jaasdb_url);
 
-// Подключаемся к базе данных
-$servername = "g8r9w9tmspbwmsyo.cbetxkdyhwsb.us-east-1.rds.amazonaws.com"; // Хост базы данных на Heroku
-$username   = "q1i28z5zzuyro11l"; // Имя пользователя базы данных
-$password   = "kwdvun8ff1f8m6fs"; // Пароль к базе данных
-$dbname     = "vtjb3fkssehwjx62"; // Имя базы данных
+// Извлекаем параметры из строки подключения
+$servername = $parsed_url['host'];
+$username   = $parsed_url['user'];
+$password   = $parsed_url['pass'];
+$dbname     = ltrim($parsed_url['path'], '/'); // Убираем символ '/' из пути
 
-// Создаем подключение к базе данных
-$conn = new mysqli($servername, $username, $password, $dbname, $port);
-
-// Проверяем подключение
+$conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Ошибка подключения: " . $conn->connect_error);
 }
 
-// Обработка POST-запроса
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Получаем данные из формы для таблицы orders
-    $last_name  = $conn->real_escape_string($_POST['surname']);    // Фамилия
-    $first_name = $conn->real_escape_string($_POST['name']);       // Имя
-    $patronymic = $conn->real_escape_string($_POST['patronymic']); // Отчество
-    $phone      = $conn->real_escape_string($_POST['phone']);      // Телефон
-    $car_model  = $conn->real_escape_string($_POST['car_model']);  // Модель автомобиля
-    $car_number = $conn->real_escape_string($_POST['car_number']); // Регистрационный знак
+    $last_name  = $_POST['surname'];    // Фамилия
+    $first_name = $_POST['name'];       // Имя
+    $patronymic = $_POST['patronymic']; // Отчество
+    $phone      = $_POST['phone'];      // Телефон
+    $car_model  = $_POST['car_model'];  // Модель автомобиля
+    $car_number = $_POST['car_number']; // Регистрационный знак
     
     // Получаем итоговую сумму из скрытого поля формы
-    $total_price = (int)$_POST['total_price'];  // Преобразуем к целому числу
+    $total_price = $_POST['total_price'];
+    $total_price = (int)$total_price;  // Преобразуем к целому числу
 
     // Генерация текущей даты и времени
     $date = date("Y-m-d H:i:s");
@@ -54,30 +52,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $order_id = $conn->insert_id;
 
     // Обработка и вставка данных для таблицы list_of_work
+    // Массив с данными услуг
     $service_count = isset($_POST['service_count']) ? (int)$_POST['service_count'] : 0;
+    // Обработка данных для услуг, теперь ограничиваемся числом из POST
     $maxServices = 500;
     $services = [];
-
-    // Сбор данных об услугах
     for ($i = 1; $i <= $maxServices; $i++) {
         if (isset($_POST["service{$i}_price"]) && $_POST["service{$i}_price"] > 0) {
             $services[] = [
-                'name'      => $conn->real_escape_string($_POST["service{$i}_name"] ?? ''),
-                'section'   => $conn->real_escape_string($_POST["service{$i}_section"] ?? ''),
-                'service_id'=> (int)$_POST["service{$i}_service_id"] ?? 0,
-                'price'     => (int)$_POST["service{$i}_price"] ?? 0,
+                'name'      => $_POST["service{$i}_name"] ?? '',
+                'section'   => $_POST["service{$i}_section"] ?? '',
+                'service_id'=> $_POST["service{$i}_service_id"] ?? '',
+                'price'     => $_POST["service{$i}_price"] ?? 0,
             ];
         }
     }
     
-    // Вставка данных для каждой услуги
     foreach ($services as $service) {
         if ($service['price'] > 0) { // Проверяем, чтобы цена была больше 0
+            // Вставка данных для каждой услуги в таблицу list_of_work
             $sql_services = "INSERT INTO list_of_work (order_id, service_id, name_work, price, section, full_work) 
                              VALUES (?, ?, ?, ?, ?, ?)";
                              
+            // Подготовка запроса
             $stmt_services = $conn->prepare($sql_services);
             
+            // Проверка успешности подготовки запроса
             if ($stmt_services === false) {
                 die("Ошибка подготовки запроса для list_of_work: " . $conn->error);
             }
@@ -85,10 +85,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $full_work = $service['name'] . " " . $service['price'] . " руб."; // Формируем полное описание работы
             $stmt_services->bind_param("iissss", $order_id, $service['service_id'], $service['name'], $service['price'], $service['section'], $full_work);
     
+            // Выполнение запроса
             if (!$stmt_services->execute()) {
                 die("Ошибка выполнения запроса для list_of_work: " . $stmt_services->error);
             }
             
+            // Закрытие запроса после выполнения
             $stmt_services->close();
         }
     }
