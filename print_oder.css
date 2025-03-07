@@ -280,14 +280,45 @@ button:hover, button:active {
 
     table { font-size: 12px; }
 
-    section { /* Скорее всего придеться дорабтывать так как из позиционирование Absolute будкт наслоение на основной контент */
-        position: absolute;
+
+    /* Блок колонтитула */
+    section#footer {
+        position: fixed;
         bottom: 15mm;
-        width: 175mm;
+        left: 0;
+        width: 100%;
         height: auto;
+        page-break-before: always; /* Для первой страницы */
+        z-index: 10;
     }
+
+    /* Скрыть колонтитул на остальных страницах */
+    body {
+        counter-reset: page 1; /* Сбрасываем счётчик страниц */
+    }
+
+    /* Применить стиль только к первой странице */
+    body:after {
+        content: "";
+        display: block;
+        height: 1px;
+        page-break-before: always;
+    }
+
+    /* Для остальных страниц скрыть нижний колонтитул */
+    @page {
+        size: auto;
+        margin: 0;
+    }
+    @media print and (page: first) {
+        section#footer {
+            display: block;
+        }
+    }
+    
+
     section div:nth-child(2) { font-size: 10px; } /* Перечень правил */
-    section div:nth-child(4) p:nth-child(1) { font-size: 12px; } /* Претензии примаються */
+    section div:nth-child(4) p:nth-child(1) { font-size: 12px; } /* Претензии принимаються */
     section div:nth-child(4) p:nth-child(2) { font-size: 14px; } /* Итого по закза-наряду */
     section div:nth-child(4) p:nth-child(2) { font-size: 12px; } /* Сдал, принял */
 
