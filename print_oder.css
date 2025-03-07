@@ -304,17 +304,6 @@ button:hover, button:active {
         height: 1px;
         page-break-before: always;
     }
-
-    /* Для остальных страниц скрыть нижний колонтитул */
-    @page {
-        size: auto;
-        margin: 0;
-    }
-    @media print and (page: first) {
-        section#footer {
-            display: block;
-        }
-    }
     
 
     section div:nth-child(2) { font-size: 10px; } /* Перечень правил */
