@@ -117,7 +117,7 @@ if ($order_id > 0) {
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
         <link rel="stylesheet" type="text/css" href="style.css">
-        <link rel="stylesheet" type="text/css" href="ebit_order.css">
+        <link rel="stylesheet" type="text/css" href="edit_order.css">
     </head>
     <body>
 
@@ -932,7 +932,7 @@ if ($order_id > 0) {
                             value="<?= $order_data['services_total'] ?? 0 ?>">
                     </div>
 
-                    <div class="button_block">
+                    <div class="bu tton_block">
                         <button type="submit" class="btn btn-save left_button"> СОХРАНИТЬ ИЗМЕНЕНИЯ </button>
                         <button type="reset" class="btn btn-reset right_button"> СБРОСИТЬ ИЗМЕНЕНИЯ </button>
                     </div>
