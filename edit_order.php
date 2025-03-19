@@ -932,7 +932,7 @@ if ($order_id > 0) {
                             value="<?= $order_data['services_total'] ?? 0 ?>">
                     </div>
 
-                    <div class="bu tton_block">
+                    <div class="button_block">
                         <button type="submit" class="btn btn-save left_button"> СОХРАНИТЬ ИЗМЕНЕНИЯ </button>
                         <button type="reset" class="btn btn-reset right_button"> СБРОСИТЬ ИЗМЕНЕНИЯ </button>
                     </div>
