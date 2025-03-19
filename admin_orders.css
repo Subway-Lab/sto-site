@@ -1,0 +1,173 @@
+.sticky_wrapper {
+    position: sticky;
+    top: -3vw;
+
+    background: rgb(255, 255, 255);
+}
+
+.search_block {
+    position: relative;
+
+    display: flex;
+    flex-direction: row;
+    width: 90vw;
+    height: 13vw;
+    margin: auto;
+}
+
+h2 { 
+    margin-top: 6vw;
+    margin-left: 1em;
+}
+
+.icon_search {
+    position: absolute;
+    top: 6.5vw;
+    right: 2vw;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    
+    cursor: pointer;
+}
+
+.loupe { /* FIXME: При каждаом клике на иконку присходит перемещение в таблице вверх на 7 строк */
+    width: 2.5vw;
+}
+
+aside {
+    display: flex;
+    align-items: center;
+}
+
+#info-panel { /* NOTE: Выдвижная панель поиска */ 
+    position: absolute;
+    z-index: 100;
+    top: 0;
+    left: -100vw;
+    
+    display: flex;
+    width: 80vw;
+    height: 13vw;
+
+    background: rgb(255, 255, 255);
+
+    transition: 0.3s ease-in-out;
+}
+
+input[type="checkbox"] { /* NOTE: Сам check-box */
+    position: absolute;
+}
+
+input[type="checkbox"]:checked + #info-panel { /* NOTE: Действия при активации check-box */
+    left: 0;
+}
+
+#toggle { /* NOTE: Делаем check-box невидимым */
+    position: absolute;
+    
+    width: 0;  
+    height: 0;
+
+    opacity: 0;
+}
+
+form {
+    position: relative;
+
+    width: auto;
+    margin-top: 3vw;
+    margin-left: 2vw;
+}
+
+.search_input { /* FIXME: Нужно опустить текст Placholder и Input */
+    width: 45vw;
+    height: 4vw;
+    padding-left: 1vw;
+   
+    font-size: clamp(12px, 1.25vw, 18px);
+
+    border: none;
+    border-bottom: 2px solid rgb(134, 134, 134);
+    outline: none; /* NOTE: Убираем OUTLINE */
+}
+
+.search_input:focus {
+    border-bottom: 3px solid rgb(18, 85, 164);
+}
+
+.search_input::placeholder {
+    color: rgb(134, 134, 134);
+}
+
+.base {
+    display: flex;
+    width: 90vw;
+    margin: auto;
+}
+
+table {
+    display: table;
+    table-layout: fixed; /* NOTE: Фиксированная ширина столбцов */
+
+    font-size: clamp(8px, 0.97vw, 14px);
+    color: rgb(29, 29, 31);
+    line-height: 1.2;
+    
+    word-wrap: break-word; /* NOTE: Нужно уточнить целесобразность */
+    border-collapse: collapse; /* NOTE: Нужно уточнить целесобразность */
+}
+
+thead {
+    position: sticky;
+    top: 10vw;
+
+    height: 5vw;
+
+    color: rgb(255, 255, 255);
+    text-align: center;
+    line-height: 1;
+}
+
+thead th {
+    background: rgb(18, 85, 164);
+}
+
+tbody td:nth-child(1) { width: 5vw; text-align: center; }
+tbody td:nth-child(2) { width: 6vw; }
+tbody td:nth-child(3) { width: 17vw; text-align: left; padding-left: 1vw; }
+tbody td:nth-child(4) { width: 10vw; }
+tbody td:nth-child(5) { width: 13vw; text-align: left; }
+tbody td:nth-child(6) { width: 10vw; text-align: center; }
+tbody td:nth-child(7) { width: 6vw; text-align: right; }
+tbody td:nth-child(8) { width: 6vw; text-align: right; }
+tbody td:nth-child(9) { width: 6vw; text-align: right; }
+tbody td:nth-child(10) { width: 11vw; text-align: right; padding-right: 1vw; padding-top: 5px; padding-bottom: 5px; }
+
+
+tr:nth-child(odd) {
+    background-color: rgb(255, 255, 255);
+}
+
+tr:nth-child(even) {
+    background-color: rgb(232, 232, 232);
+}
+
+.link_move_1 {
+    text-decoration: none;
+    color:rgb(29, 29, 31);
+
+    transition: color 0.1s ease-in-out;
+}
+
+.link_move_1:hover {
+    color: rgb(18, 85, 164);
+}
+
+.link_move_2 {
+    text-decoration: none;
+    color:rgb(18, 85, 164);
+    line-height: 1;
+}
