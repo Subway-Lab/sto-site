@@ -67,7 +67,7 @@ $conn->close();
         <meta name="keywords" content="key words">
         <meta name="description" content="description of the page SEO">
         <title> STANDOX </title>
-        <link rel="icon" href="filles/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="/filles/favicon.ico" type="image/x-icon">
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
         <link rel="stylesheet" type="text/css" href="print_oder.css">
