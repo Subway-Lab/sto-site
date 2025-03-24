@@ -1,4 +1,9 @@
 <?php
+// NOTE: Проверка авторизации пользователя
+require_once('auth_check.php');
+?>
+
+<?php
 // Подключаемся к базе данных
 $servername = "g8r9w9tmspbwmsyo.cbetxkdyhwsb.us-east-1.rds.amazonaws.com"; // Хост базы данных на Heroku
 $username   = "q1i28z5zzuyro11l"; // Имя пользователя базы данных
@@ -61,7 +66,8 @@ $conn->close();
         <meta charset="utf-8">
         <meta name="keywords" content="key words">
         <meta name="description" content="description of the page SEO">
-        <title> Печать Заказ-Наряда </title>
+        <title> STANDOX </title>
+        <link rel="icon" href="filles/favicon.ico" type="image/x-icon">
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
         <link rel="stylesheet" type="text/css" href="print_oder.css">

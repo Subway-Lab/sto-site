@@ -1,3 +1,9 @@
+
+<?php
+// NOTE: Проверка авторизации пользователя
+require_once('auth_check.php');
+?>
+
 <?php
 // registration.php
 
@@ -65,7 +71,8 @@ $conn->close();
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Регистрация сотрудника СТО</title>
+    <title> STANDOX </title>
+    <link rel="icon" href="filles/favicon.ico" type="image/x-icon">
     <style>
         body { font-family: Arial, sans-serif; margin: 20px; }
         form { max-width: 400px; margin: 0 auto; }
