@@ -271,8 +271,14 @@ button:hover, button:active {
     @page {
         size: 210mm 297mm;
         margin: 0;
+        padding: 10mm 0 15mm 0;
     }
 
+    @page :first {
+        margin: 0;
+        padding: 0mm 0 15mm 0;
+    }
+    
     body { -webkit-print-color-adjust: exact; }
 
     h1, h2 { font-size: 16px; }
@@ -280,7 +286,7 @@ button:hover, button:active {
     table { font-size: 12px; }
 
     section { /* Скорее всего придеться дорабтывать так как из позиционирование Absolute будкт наслоение на основной контент */
-        position: absolute;
+        position: relative;
         bottom: 15mm;
         width: 175mm;
         height: auto;
