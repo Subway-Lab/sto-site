@@ -271,29 +271,19 @@ button:hover, button:active {
     @page {
         size: 210mm 297mm;
         margin: 0;
-        padding: 10mm 0 15mm 0;
     }
 
-    @page :first {
-        margin: 0;
-        padding: 0mm 0 15mm 0;
-    }
-    
-    body {
-        display: flex;
-        flex-direction: column;
-        min-height: 297mm;
-        -webkit-print-color-adjust: exact;
-    }
-
+    body { -webkit-print-color-adjust: exact; }
 
     h1, h2 { font-size: 16px; }
 
     table { font-size: 12px; }
 
     section { /* Скорее всего придеться дорабтывать так как из позиционирование Absolute будкт наслоение на основной контент */
-        position: relative;
-        bottom: 0;
+        position: absolute;
+        bottom: 15mm;
+        width: 175mm;
+        height: auto;
     }
     section div:nth-child(2) { font-size: 10px; } /* Перечень правил */
     section div:nth-child(4) p:nth-child(1) { font-size: 12px; } /* Претензии примаються */
