@@ -51,7 +51,7 @@ if ($searchQuery) {
     
     <?php
         $adminOrderCss = 'admin_orders.css';
-        include 'head.php';
+        include 'shared/head.php';
     ?>
 
         <body>
@@ -133,8 +133,8 @@ if ($searchQuery) {
                 </table>
             </div>
             
-            <?php include 'footer.php'; ?>
-            
+            <?php include 'shared/footer.php'; ?>
+
             <script src="search_bar.js"></script>
             <script src="admin_order_1.js"></script>
             

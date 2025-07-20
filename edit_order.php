@@ -111,9 +111,9 @@ if ($order_id > 0) {
 }
 
 // Подключаем файлы с услугами
-$works_services = require 'works.php';
-$painting_services = require 'painting.php';
-$parts_services = require 'parts.php';
+$works_services = require 'shared/works.php';
+$painting_services = require 'shared/painting.php';
+$parts_services = require 'shared/parts.php';
 ?>
 
 <!DOCTYPE HTML>
@@ -121,7 +121,7 @@ $parts_services = require 'parts.php';
 
    <?php
         $ebitOrderCss = 'edit_order.css';
-        include 'head.php';
+        include 'shared/head.php';
     ?>
 
 
@@ -348,7 +348,7 @@ $parts_services = require 'parts.php';
             </form>
         </div>
 
-        <?php include 'footer.php'; ?>
+        <?php include 'shared/footer.php'; ?>
 
         <script src="index_1.js"></script>   
         <script src="edit_order_1.js"></script>

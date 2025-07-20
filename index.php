@@ -6,7 +6,7 @@ require_once('auth_check.php');
 <!DOCTYPE HTML>
 <html lang="ru">
 
-    <?php include 'head.php'; ?>
+    <?php include 'shared/head.php'; ?>
     
     <body>
 
@@ -65,7 +65,7 @@ require_once('auth_check.php');
                 </div>
 
                 <?php
-                $services = require_once 'works.php';
+                $services = require_once 'shared/works.php';
                 foreach ($services as $section) {
                     echo '
                     <div class="collapsible-container">
@@ -98,7 +98,7 @@ require_once('auth_check.php');
                 </div>
 
                 <?php
-                $services = require_once 'painting.php';
+                $services = require_once 'shared/painting.php';
                 foreach ($services as $section) {
                     echo '
                     <div class="collapsible-container">
@@ -131,7 +131,7 @@ require_once('auth_check.php');
                 </div>
 
                 <?php
-                $services = require_once 'parts.php';
+                $services = require_once 'shared/parts.php';
                 foreach ($services as $section) {
                     echo '
                     <div class="collapsible-container">
@@ -171,8 +171,8 @@ require_once('auth_check.php');
             </form>
         </div>
 
-        <?php include 'footer.php'; ?>
-
+        <?php include 'shared/footer.php'; ?>
+        
         <script src="index_1.js"></script>
         <script src="index_2.js"></script>
         <script src="index_3.js"></script>
