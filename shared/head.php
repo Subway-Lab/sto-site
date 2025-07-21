@@ -1,3 +1,10 @@
+<?php
+$protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https://' : 'http://';
+$host = $_SERVER['HTTP_HOST'];
+$projectDir = dirname(dirname($_SERVER['SCRIPT_NAME']));
+$baseUrl = $protocol . $host . $projectDir . '/';
+?>
+
 <head>
     <meta charset="utf-8">
     <meta name="keywords" content="key words">
@@ -21,16 +28,14 @@
     <!-- NOTE: Icon for iOS -->
     <link rel="apple-touch-icon" sizes="512x512" href="https://www.standox.pro/files/apple-touch-icon.png">
 
-    <link rel="icon" href="files/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="<?= $baseUrl ?>../files/favicon.ico" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
 
-    <?php if (!isset($noStyle) || $noStyle !== true): ?> 
-        <link rel="stylesheet" type="text/css" href="style.css">
-    <?php endif; ?>
-
-    <?php if (isset($ebitOrderCss)): ?>
-        <link rel="stylesheet" type="text/css" href="<?= htmlspecialchars($ebitOrderCss) ?>">
+    <link rel="stylesheet" href="<?= $baseUrl ?>../public/style.css?v=<?= time() ?>">
+    
+    <?php if (isset($ebitingCss)): ?>
+        <link rel="stylesheet" type="text/css" href="<?= htmlspecialchars_decode($ebitingCss) ?>">
     <?php endif; ?>
 
     <?php if (isset($loginCss)): ?>

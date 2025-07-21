@@ -1,6 +1,8 @@
 <?php
 // NOTE: Проверка авторизации пользователя
-require_once('auth_check.php');
+require_once('../../auth_check.php');
+
+$base_url = '../../';
 ?>
 
 <?php
@@ -90,7 +92,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $stmt_services->execute();
     }
         
-    header("Location: admin_orders.php?id=$order_id");
+    header("Location: ../../admin_orders.php?id=$order_id");
     exit;
 }
 
@@ -111,17 +113,17 @@ if ($order_id > 0) {
 }
 
 // Подключаем файлы с услугами
-$works_services = require 'shared/works.php';
-$painting_services = require 'shared/painting.php';
-$parts_services = require 'shared/parts.php';
+$works_services = require '../../shared/works.php';
+$painting_services = require '../../shared/painting.php';
+$parts_services = require '../../shared/parts.php';
 ?>
 
 <!DOCTYPE HTML>
 <html lang="ru">
 
    <?php
-        $ebitOrderCss = 'edit_order.css';
-        include 'shared/head.php';
+        $ebitingCss = 'editing.css';
+        include '../../shared/head.php';
     ?>
 
 
@@ -131,14 +133,14 @@ $parts_services = require 'shared/parts.php';
             <h1> STANDOX </h1>
             <nav class="menu">
                 <ul>
-                    <li><a href="admin_orders.php" class="menu_link"> база данных </a></li>
+                    <li><a href="../../admin_orders.php" class="menu_link"> база данных </a></li>
                     <li><a href="logout.php" class="menu_link"> выйти </a></li>
                 </ul>
             </nav>
         </header>
 
         <div class="form">
-            <form id="orderForm" action="edit_order.php" method="POST">
+            <form id="orderForm" action="editing.php" method="POST">
                 <input type="hidden" name="order_id" value="<?= $order_id ?>">
 
             <div class="title">
@@ -348,12 +350,12 @@ $parts_services = require 'shared/parts.php';
             </form>
         </div>
 
-        <?php include 'shared/footer.php'; ?>
+        <?php include '../../shared/footer.php'; ?>
 
-        <script src="index_1.js"></script>   
-        <script src="edit_order_1.js"></script>
-        <script src="edit_order_2.js"></script>
-        <script src="edit_order_3.js"></script>
+        <script src="../../index_1.js"></script>   
+        <script src="editing_1.js"></script>
+        <script src="editing_2.js"></script>
+        <script src="editing_3.js"></script>
         
     </body>
 </html>
